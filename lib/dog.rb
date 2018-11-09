@@ -58,12 +58,12 @@ class Dog
     SQL
     dog_row = DB[:conn].execute(sql, hash[:name], hash[:breed])[0]
     if dog_row.empty?
-      self.create(hash)
+      new_dogself.create(hash)
     else
       new_dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
       # binding.pry
     end
-    
+
 
   end
 
