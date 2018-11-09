@@ -92,7 +92,7 @@ class Dog
 
   def update
     sql = <<-SQL
-      UPDATE T
+      UPDATE dogs 
     SQL
   end
 end
