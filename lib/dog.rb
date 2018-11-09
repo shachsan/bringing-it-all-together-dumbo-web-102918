@@ -51,24 +51,33 @@ class Dog
     dog_row = DB[:conn].execute(sql, id)[0]
     new_dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
   end
+  #
+  # def self.find_or_create_by(hash)
+  #   sql = <<-SQL
+  #     SELECT * FROM dogs WHERE name = ? AND breed = ?
+  #   SQL
+  #   dog_row = DB[:conn].execute(sql, hash[:name], hash[:breed])[0]
+  #   if dog_row.empty?
+  #     new_dog = self.create(hash)
+  #   else
+  #     new_dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
+  #     # binding.pry
+  #   end
+  #   new_dog
+  #
+  # end
 
-  def self.find_or_create_by(hash)
-    sql = <<-SQL
-      SELECT * FROM dogs WHERE name = ? AND breed = ?
-    SQL
-    dog_row = DB[:conn].execute(sql, hash[:name], hash[:breed])[0]
-    if dog_row.empty?
-      new_dog = self.create(hash)
-    else
-      new_dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
-      # binding.pry
+
+  def self.find_or_create_by(name:, breed:)
+      dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = '#{name}' AND breed = '#{breed}'")
+      if !dog.empty?
+        dog_data = dog[0]
+        dog = Dog.new(id: dog_data[0], name: dog_data[1], breed: dog_data[2])
+      else
+        dog = self.create(name: name, breed: breed)
+      end
+      dog
     end
-    new_dog
-
-  end
-
-
-
 
 
 
