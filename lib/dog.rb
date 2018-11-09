@@ -63,7 +63,7 @@ class Dog
       new_dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
       # binding.pry
     end
-    
+    new_dog
 
   end
 
