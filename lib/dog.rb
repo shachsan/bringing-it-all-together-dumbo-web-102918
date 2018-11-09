@@ -73,7 +73,7 @@ class Dog
 
   def self.find_by_name(name)
     dog_row = DB[:conn].execute("SELECT * FROM dogs WHERE name = '#{name}'")[0]
-    new_from_db
+    new_from_db()
   end
 
   def update
