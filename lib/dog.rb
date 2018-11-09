@@ -86,7 +86,7 @@ class Dog
   end
 
   def self.find_by_name(name)
-    DB[:conn].execute("SELECT * F")
+    DB[:conn].execute("SELECT * FROM dogs ")
   end
 
 end
