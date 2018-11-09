@@ -90,5 +90,7 @@ class Dog
     dog = Dog.new(id:dog_row[0], name:dog_row[1], breed:dog_row[2])
   end
 
+def up
 
+end
 end
